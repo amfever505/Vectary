@@ -28,7 +28,7 @@ async function run() {
     );
   }
 
-  viewerApi = new VctrApi('0feb5eb2-c1fb-4644-850d-46c1bb55e548', errHandler);
+  viewerApi = new VctrApi('52f7eb92-d707-4c91-bc24-909d653c0ff1', errHandler);
   try {
     await viewerApi.init();
   } catch (e) {
