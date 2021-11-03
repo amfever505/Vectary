@@ -15,10 +15,10 @@ async function run() {
   async function onReady() {
     console.log('API ready..');
 
-    console.log(await vctrApi.getObjects());
+    console.log(await viewerApi.getObjects());
 
-    const allMaterials = await vctrApi.getMaterials();
-    const allMeshes = await vctrApi.getMeshes();
+    const allMaterials = await viewerApi.getMaterials();
+    const allMeshes = await viewerApi.getMeshes();
     addOptionsToSelector(
       allMaterials.map((mat) => mat.name),
       materialSelector
@@ -29,9 +29,9 @@ async function run() {
     );
   }
 
-  vctrApi = new VctrApi('0feb5eb2-c1fb-4644-850d-46c1bb55e548', errHandler);
+  viewerApi = new VctrApi('0feb5eb2-c1fb-4644-850d-46c1bb55e548', errHandler);
   try {
-    await vctrApi.init();
+    await viewerApi.init();
   } catch (e) {
     errHandler(e);
   }
