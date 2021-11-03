@@ -6,8 +6,38 @@ const allSceneMeshes = viewerApi.getMeshes();
 console.log('Meshes', allSceneMeshes);
 
 async function run() {
-  await viewerApi.init();
-  console.log(await viewerApi.getObjects());
+  console.log('Example script running..');
+
+  function errHandler(err) {
+    console.log('API error', err);
+  }
+
+  async function onReady() {
+    console.log('API ready..');
+
+    console.log(await vctrApi.getObjects());
+
+    const allMaterials = await vctrApi.getMaterials();
+    const allMeshes = await vctrApi.getMeshes();
+    addOptionsToSelector(
+      allMaterials.map((mat) => mat.name),
+      materialSelector
+    );
+    addOptionsToSelector(
+      allMeshes.map((mesh) => mesh.name),
+      meshSelector
+    );
+  }
+
+  vctrApi = new VctrApi('0feb5eb2-c1fb-4644-850d-46c1bb55e548', errHandler);
+  try {
+    await vctrApi.init();
+  } catch (e) {
+    errHandler(e);
+  }
+
+  addListeners();
+  onReady();
 }
 
 run();
